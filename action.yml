@@ -1,4 +1,4 @@
-name: Helm Deploy
+name: Github Action | Helm Deployment
 description: Deploys a helm chart to Kubernetes
 author: lykon
 branding:
