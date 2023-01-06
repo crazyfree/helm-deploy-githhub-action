@@ -46,8 +46,8 @@ inputs:
   version:
     description: Version of the app, usually commit sha works here.
     required: false
-  image-tag:
-    description: Used to override `version` due to this param seems outdated. 
+  sets:
+    description: Used to override values.yml variables. 
     required: false
   chart-version:
     description: The version of the helm chart you want to deploy (distinct from app version)

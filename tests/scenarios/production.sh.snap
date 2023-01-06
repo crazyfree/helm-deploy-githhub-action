@@ -1,4 +1,9 @@
 ::debug::not setting deployment status
+::debug::param: helm = "helm3"
+::debug::param: repo = ""
+::debug::param: repoAlias = ""
+::debug::param: repoUsername = ""
+::debug::param: repoPassword = ""
 ::debug::param: track = "stable"
 ::debug::param: release = "app"
 ::debug::param: appName = "app"
@@ -9,14 +14,14 @@
 ::debug::param: dryRun = ""
 ::debug::param: task = ""
 ::debug::param: version = "1234"
+::debug::param: getSets = "function getSets(sets) {%0A  if (typeof sets === "object") {%0A    return JSON.stringify(sets);%0A  }%0A%0A  return sets;%0A}"
 ::debug::param: secrets = "{"secret":"val"}"
 ::debug::param: valueFiles = "[]"
 ::debug::param: removeCanary = 
 ::debug::param: timeout = "30"
-::debug::param: repository = ""
 ::debug::param: atomic = "true"
 ::debug::env: KUBECONFIG="undefined"
 ::debug::rendering value files [./values.yml] with: {"secrets":{"secret":"val"}}
-[command]helm upgrade app /usr/src/charts/app --install --wait --namespace=default --set=app.name=app --set=app.version=1234 --timeout=30 --values=./values.yml --atomic
-helm upgrade app /usr/src/charts/app --install --wait --namespace=default --set=app.name=app --set=app.version=1234 --timeout=30 --values=./values.yml --atomic
+[command]helm3 upgrade app /usr/src/charts/app --install --wait --namespace=default --set=app.name=app --set=app.version=1234 --set sets --timeout=30 --values=./values.yml --atomic
+helm upgrade app /usr/src/charts/app --install --wait --namespace=default --set=app.name=app --set=app.version=1234 --set sets --timeout=30 --values=./values.yml --atomic
 ::debug::not setting deployment status

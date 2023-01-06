@@ -67,6 +67,14 @@ function getValues(values) {
   return values;
 }
 
+function getSets(sets) {
+  if (typeof sets === "object") {
+    return JSON.stringify(sets);
+  }
+
+  return sets;
+}
+
 function getSecrets(secrets) {
   if (typeof secrets === "string") {
     try {
@@ -198,7 +206,7 @@ async function deploy(helm) {
   const values = getValues(getInput("values"));
   const task = getInput("task");
   const version = getInput("version");
-  const imageTag = getInput("image-tag");
+  const sets = getSets("sets");
   const valueFiles = getValueFiles(getInput("value_files"));
   const removeCanary = getInput("remove_canary");
   const timeout = getInput("timeout");
@@ -216,7 +224,7 @@ async function deploy(helm) {
   core.debug(`param: dryRun = "${dryRun}"`);
   core.debug(`param: task = "${task}"`);
   core.debug(`param: version = "${version}"`);
-  core.debug(`param: image-tag = "${imageTag}"`);
+  core.debug(`param: getSets = "${getSets}"`);
   core.debug(`param: secrets = "${JSON.stringify(secrets)}"`);
   core.debug(`param: valueFiles = "${JSON.stringify(valueFiles)}"`);
   core.debug(`param: removeCanary = ${removeCanary}`);
@@ -236,7 +244,7 @@ async function deploy(helm) {
   if (dryRun) args.push("--dry-run");
   if (appName) args.push(`--set=app.name=${appName}`);
   if (version) args.push(`--set=app.version=${version}`);
-  if (imageTag) args.push(`--set=image.tag=${imageTag}`);
+  if (sets) args.push(`--set ${sets}`);
   if (chartVersion) args.push(`--version=${chartVersion}`);
   if (timeout) args.push(`--timeout=${timeout}`);
 
