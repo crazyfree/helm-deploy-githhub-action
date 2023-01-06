@@ -33,6 +33,7 @@ payload if the action was triggered by a deployment.
   JSON encoded map.
 - `helm`: Helm binary to execute, one of: [`helm`, `helm3`].
 - `version`: Version of the app, usually commit sha works here.
+- `image-tag`: Used to override `version` due to this param seems outdated. 
 - `timeout`: specify a timeout for helm deployment
 - `repo`: Helm chart repository to be added.
 - `repo-alias`: Helm repository alias that will be used.
