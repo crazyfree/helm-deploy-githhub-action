@@ -206,7 +206,7 @@ async function deploy(helm) {
   const values = getValues(getInput("values"));
   const task = getInput("task");
   const version = getInput("version");
-  const sets = getSets("sets");
+  const sets = getSets(getInput("sets"));
   const valueFiles = getValueFiles(getInput("value_files"));
   const removeCanary = getInput("remove_canary");
   const timeout = getInput("timeout");
@@ -224,7 +224,7 @@ async function deploy(helm) {
   core.debug(`param: dryRun = "${dryRun}"`);
   core.debug(`param: task = "${task}"`);
   core.debug(`param: version = "${version}"`);
-  core.debug(`param: getSets = "${getSets}"`);
+  core.debug(`param: sets = "${getSets}"`);
   core.debug(`param: secrets = "${JSON.stringify(secrets)}"`);
   core.debug(`param: valueFiles = "${JSON.stringify(valueFiles)}"`);
   core.debug(`param: removeCanary = ${removeCanary}`);
