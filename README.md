@@ -33,6 +33,7 @@ payload if the action was triggered by a deployment.
   JSON encoded map.
 - `helm`: Helm binary to execute, one of: [`helm`, `helm3`].
 - `version`: Version of the app, usually commit sha works here.
+- `sets`: Used to override values.yml variables. 
 - `timeout`: specify a timeout for helm deployment
 - `repo`: Helm chart repository to be added.
 - `repo-alias`: Helm repository alias that will be used.
@@ -72,10 +73,10 @@ jobs:
   deployment:
     runs-on: 'ubuntu-latest'
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
 
     - name: 'Deploy'
-      uses: 'deliverybot/helm@v1'
+      uses: 'crazyfree/helm@v1'
       with:
         release: 'nginx'
         namespace: 'default'
@@ -113,10 +114,10 @@ jobs:
   deployment:
     runs-on: 'ubuntu-latest'
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
 
     - name: 'Deploy'
-      uses: 'deliverybot/helm@v1'
+      uses: 'crazyfree/helm@v1'
       with:
         release: 'nginx'
         track: canary
@@ -125,6 +126,7 @@ jobs:
         token: '${{ github.token }}'
         values: |
           name: foobar
+        sets: "foo=bar,key=value"
       env:
         KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'
 ```
