@@ -49,6 +49,9 @@ inputs:
   sets:
     description: Used to override values.yml variables. 
     required: false
+  timeout:
+    description: specify a timeout for helm deployment.
+    required: false
   chart-version:
     description: The version of the helm chart you want to deploy (distinct from app version)
     required: false
